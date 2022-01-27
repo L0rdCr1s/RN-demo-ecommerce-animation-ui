@@ -1,9 +1,11 @@
-import {createStackNavigator} from '@react-navigation/stack';
+import {AppScreensStackParams} from 'assets/configs/routes';
 import React from 'react';
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import Cart from 'screens/cart';
+import Details from 'screens/details';
 import Discover from 'screens/discover';
 
-const Stack = createStackNavigator();
+const Stack = createSharedElementStackNavigator<AppScreensStackParams>();
 
 const Main: React.FC = () => {
   return (
@@ -13,8 +15,9 @@ const Main: React.FC = () => {
         presentation: 'modal',
         gestureEnabled: true,
       }}>
-      <Stack.Screen name={'Discover'} component={Discover} />
-      <Stack.Screen name={'Cart'} component={Cart} />
+      <Stack.Screen name="DISCOVER" component={Discover} />
+      <Stack.Screen name="DETAILS" component={Details} />
+      <Stack.Screen name="CART" component={Cart} />
     </Stack.Navigator>
   );
 };
