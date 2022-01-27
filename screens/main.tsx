@@ -1,11 +1,21 @@
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {Text, SafeAreaView} from 'react-native';
+import Cart from 'screens/cart';
+import Discover from 'screens/discover';
+
+const Stack = createStackNavigator();
 
 const Main: React.FC = () => {
   return (
-    <SafeAreaView>
-      <Text>Hello christopher</Text>
-    </SafeAreaView>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        presentation: 'modal',
+        gestureEnabled: true,
+      }}>
+      <Stack.Screen name={'Discover'} component={Discover} />
+      <Stack.Screen name={'Cart'} component={Cart} />
+    </Stack.Navigator>
   );
 };
 

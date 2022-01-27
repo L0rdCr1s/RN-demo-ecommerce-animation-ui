@@ -1,3 +1,4 @@
+import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect} from 'react';
 
 import {store, persist} from 'store/store';
@@ -15,13 +16,15 @@ export default function App() {
   }, []);
 
   return (
-    <Provider store={store}>
-      <PersistGate persistor={persist} loading={null}>
-        <SafeAreaProvider>
-          <Main />
-        </SafeAreaProvider>
-      </PersistGate>
-    </Provider>
+    <NavigationContainer>
+      <Provider store={store}>
+        <PersistGate persistor={persist} loading={null}>
+          <SafeAreaProvider>
+            <Main />
+          </SafeAreaProvider>
+        </PersistGate>
+      </Provider>
+    </NavigationContainer>
   );
 }
 
