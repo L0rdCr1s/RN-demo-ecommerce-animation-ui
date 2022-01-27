@@ -5,7 +5,9 @@ export type ShoeType = {
   name: string;
   price: string;
   brand: string;
-  image: ImageSourcePropType[];
+  color: string;
+  thumbnail: ImageSourcePropType;
+  images: ImageSourcePropType[];
   description: string;
   size: number[];
 };

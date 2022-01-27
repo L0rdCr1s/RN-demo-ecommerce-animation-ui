@@ -1,18 +1,9 @@
-import AnimatedCard from 'components/AnimatedCard';
-import Card from 'components/Card';
-import BrandsRow from 'components/BrandsRow';
-import SectionHeading from 'components/SectionHeading';
-import VerticalTags from 'components/VerticalTags';
 import React from 'react';
-import {
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import AnimatedHorizontalScrollList from 'components/AnimatedHorizontalScrollList';
+import BottomRow from 'components/BottomRow';
+import BrandsRow from 'components/BrandsRow';
+import VerticalTags from 'components/VerticalTags';
+import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {
   heightPercentageToDP as hdp,
   widthPercentageToDP as wdp,
@@ -28,12 +19,9 @@ const Discover: React.FC = () => {
         <View style={styles.verticalTags}>
           <VerticalTags />
         </View>
-        <AnimatedCard />
+        <AnimatedHorizontalScrollList />
       </View>
-      <SectionHeading title={'More'} />
-      <View style={styles.cardsRowContainer}>
-        <Card />
-      </View>
+      <BottomRow />
     </SafeAreaView>
   );
 };
@@ -41,20 +29,17 @@ const Discover: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  cardsRowContainer: {
-    marginTop: hdp(3),
-    marginLeft: wdp(5),
+    backgroundColor: '#FFFEFE',
   },
   topCardsContainer: {
     flexDirection: 'row',
-    marginLeft: wdp(6),
     paddingTop: hdp(3),
   },
   verticalTags: {
     width: hdp(6),
     height: hdp(30),
-    marginRight: wdp(3),
+    left: wdp(6),
+    position: 'absolute',
   },
 });
 

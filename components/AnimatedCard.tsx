@@ -6,20 +6,23 @@ import {
 } from 'react-native-responsive-screen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {ShoeType} from 'store/utils/types';
 
-const AnimatedCard: React.FC = () => {
+interface Props extends ShoeType {}
+
+const AnimatedCard: React.FC<Props> = props => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.brand}>Nike</Text>
-      <Text style={styles.name}>AIR-MAX</Text>
-      <Text style={styles.price}>$350.00</Text>
+    <View style={[styles.container, {backgroundColor: props.color}]}>
+      <Text style={styles.brand}>{props.brand}</Text>
+      <Text style={styles.name}>{props.name}</Text>
+      <Text style={styles.price}>{props.price}</Text>
       <AntDesign
         name="hearto"
         size={22}
         color="#FFFFFF"
         style={styles.likeButton}
       />
-      <Image source={require('assets/img/1.png')} style={styles.cardImage} />
+      <Image source={props.thumbnail} style={styles.cardImage} />
       <MaterialIcons
         name="arrow-right-alt"
         size={30}
@@ -32,11 +35,11 @@ const AnimatedCard: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'red',
     height: hdp(30),
     width: wdp(47),
     borderRadius: 20,
     padding: hdp(2),
+    marginRight: wdp(25),
   },
   cardImage: {
     height: hdp(22),

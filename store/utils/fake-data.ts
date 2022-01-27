@@ -13,7 +13,9 @@ export const sampleShoes: ShoeType[] = [
     name: 'Lebron19',
     price: '$750',
     brand: 'Nike',
-    image: [
+    color: '#6b52ae',
+    thumbnail: require('assets/img/1.png'),
+    images: [
       require('assets/img/lebron19-1.webp'),
       require('assets/img/lebron19-2.webp'),
       require('assets/img/lebron19-3.webp'),
@@ -26,7 +28,9 @@ export const sampleShoes: ShoeType[] = [
     name: 'Air Jordan',
     price: '$550',
     brand: 'Nike',
-    image: [
+    color: '#193498',
+    thumbnail: require('assets/img/2.png'),
+    images: [
       require('assets/img/wairjordan-1.webp'),
       require('assets/img/wairjordan-2.webp'),
       require('assets/img/wairjordan-3.webp'),
@@ -39,7 +43,9 @@ export const sampleShoes: ShoeType[] = [
     name: 'KD14',
     price: '$350',
     brand: 'Nike',
-    image: [
+    color: '#B05E27',
+    thumbnail: require('assets/img/3.png'),
+    images: [
       require('assets/img/KD14-1.webp'),
       require('assets/img/KD14-2.webp'),
       require('assets/img/KD14-3.jpeg'),
@@ -52,7 +58,9 @@ export const sampleShoes: ShoeType[] = [
     name: 'SNKRS',
     price: '$150',
     brand: 'Nike',
-    image: [
+    color: '#333333',
+    thumbnail: require('assets/img/4.png'),
+    images: [
       require('assets/img/SNKRS-1.webp'),
       require('assets/img/SNKRS-2.webp'),
       require('assets/img/SNKRS-3.webp'),
