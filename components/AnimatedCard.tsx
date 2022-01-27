@@ -4,6 +4,7 @@ import {
   heightPercentageToDP as hdp,
   widthPercentageToDP as wdp,
 } from 'react-native-responsive-screen';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const AnimatedCard: React.FC = () => {
@@ -19,9 +20,9 @@ const AnimatedCard: React.FC = () => {
         style={styles.likeButton}
       />
       <Image source={require('assets/img/1.png')} style={styles.cardImage} />
-      <AntDesign
-        name="arrowright"
-        size={26}
+      <MaterialIcons
+        name="arrow-right-alt"
+        size={30}
         color="#FFFFFF"
         style={styles.arrowButton}
       />

@@ -38,20 +38,20 @@ const headerStyles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingLeft: wdp(6),
+    paddingLeft: wdp(8),
     paddingVertical: hdp(2),
     width: wdp(130),
   },
   activeBrand: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '900',
-    marginRight: wdp(3),
+    marginRight: wdp(5),
   },
   inactiveBrand: {
-    fontSize: 18,
-    fontWeight: '900',
-    marginRight: wdp(3),
-    color: 'rgba(0,0,0,0.5)'
+    fontSize: 20,
+    fontWeight: '700',
+    marginRight: wdp(12),
+    color: 'rgba(0,0,0,0.5)',
   },
 });
 
