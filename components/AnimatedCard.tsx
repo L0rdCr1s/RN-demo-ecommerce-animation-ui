@@ -1,6 +1,6 @@
 import {ROUTES} from 'assets/configs/routes';
 import React from 'react';
-import {Image, Pressable, StyleSheet, Text, Animated} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, Animated, View} from 'react-native';
 import {
   heightPercentageToDP as hdp,
   widthPercentageToDP as wdp,
@@ -28,13 +28,34 @@ const AnimatedCard: React.FC<Props> = ({shoe, index, x}) => {
   // calculate the position of the card
   const position = Animated.subtract(index * wdp(71), x);
   const isFirst = 0;
-  const isLast = wdp(100) - wdp(61);
+  const isPreparing = wdp(100) - wdp(41);
+  const isLast = wdp(100) - wdp(31);
   const isShowing = wdp(100);
   const isHiding = -wdp(71);
 
   const scale = position.interpolate({
     inputRange: [isHiding, isFirst, isLast, isShowing],
-    outputRange: [0.8, 1.2, 1, 1],
+    outputRange: [1, 1.12, 1, 1],
+  });
+
+  const shoeRotate = position.interpolate({
+    inputRange: [isHiding, isFirst, isLast, isShowing],
+    outputRange: ['-20deg', '-20deg', '-55deg', '-75deg'],
+  });
+
+  const shoeTranslateX = position.interpolate({
+    inputRange: [isHiding, isFirst, isLast],
+    outputRange: [wdp(-80), wdp(4), wdp(2)],
+  });
+
+  const cardRotate = position.interpolate({
+    inputRange: [isHiding, isFirst, isPreparing, isLast, isShowing],
+    outputRange: ['0deg', '0deg', '30deg', '0deg', '0deg'],
+  });
+
+  const cardTranslateX = position.interpolate({
+    inputRange: [isHiding, isFirst, isPreparing, isLast, isShowing],
+    outputRange: [0, 0, wdp(-20), wdp(-8), 0],
   });
 
   const onPress = () => {
@@ -46,29 +67,47 @@ const AnimatedCard: React.FC<Props> = ({shoe, index, x}) => {
   };
 
   return (
-    <AnimatedPressable
-      style={[
-        styles.container,
-        {backgroundColor: shoe.color, transform: [{scale: scale}]},
-      ]}
-      onPress={onPress}>
-      <Text style={styles.brand}>{shoe.brand}</Text>
-      <Text style={styles.name}>{shoe.name}</Text>
-      <Text style={styles.price}>{shoe.price}</Text>
-      <AntDesign
-        name="hearto"
-        size={22}
-        color="#FFFFFF"
-        style={styles.likeButton}
+    <View>
+      <AnimatedPressable
+        style={[
+          styles.container,
+          {
+            backgroundColor: shoe.color,
+            transform: [
+              {perspective: -1000},
+              {scale: scale},
+              {rotateY: cardRotate},
+              {translateX: cardTranslateX},
+            ],
+          },
+        ]}
+        onPress={onPress}>
+        <Text style={styles.brand}>{shoe.brand}</Text>
+        <Text style={styles.name}>{shoe.name}</Text>
+        <Text style={styles.price}>{shoe.price}</Text>
+        <AntDesign
+          name="hearto"
+          size={22}
+          color="#FFFFFF"
+          style={styles.likeButton}
+        />
+        <MaterialIcons
+          name="arrow-right-alt"
+          size={30}
+          color="#FFFFFF"
+          style={styles.arrowButton}
+        />
+      </AnimatedPressable>
+      <Animated.Image
+        source={shoe.thumbnail}
+        style={[
+          styles.cardImage,
+          {
+            transform: [{rotate: shoeRotate}, {translateX: shoeTranslateX}],
+          },
+        ]}
       />
-      <Image source={shoe.thumbnail} style={styles.cardImage} />
-      <MaterialIcons
-        name="arrow-right-alt"
-        size={30}
-        color="#FFFFFF"
-        style={styles.arrowButton}
-      />
-    </AnimatedPressable>
+    </View>
   );
 };
 
@@ -78,13 +117,13 @@ const styles = StyleSheet.create({
     width: wdp(47),
     borderRadius: 20,
     padding: hdp(2),
-    marginRight: wdp(24),
+    marginRight: wdp(25),
   },
   cardImage: {
     height: hdp(22),
     width: hdp(22),
     resizeMode: 'contain',
-    transform: [{translateX: wdp(2)}, {rotate: '-25deg'}],
+    // transform: [{translateX: wdp(2)}],
     position: 'absolute',
     top: hdp(5),
   },
