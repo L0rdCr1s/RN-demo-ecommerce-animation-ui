@@ -36,7 +36,7 @@ const headerStyles = StyleSheet.create({
     transform: [{rotate: '-90deg'}],
     position: 'absolute',
     left: wdp(-28),
-    bottom: wdp(26),
+    bottom: wdp(20),
   },
   activeBrand: {
     fontSize: 17,

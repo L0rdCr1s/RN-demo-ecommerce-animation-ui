@@ -22,7 +22,7 @@ const BottomRow: React.FC = () => {
 
 const styles = StyleSheet.create({
   cardsRowContainer: {
-    marginTop: hdp(3),
+    marginTop: hdp(2),
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: wdp(5),
