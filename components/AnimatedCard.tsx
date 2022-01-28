@@ -7,33 +7,41 @@ import {
 } from 'react-native-responsive-screen';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {selectShoe} from 'store/reducers/appState';
+import {useAppDispatch} from 'store/utils/hooks';
 import {ShoeType} from 'store/utils/types';
 import {useNavigation} from '@react-navigation/native';
 
-interface Props extends ShoeType {}
+interface Props {
+  shoe: ShoeType;
+}
 
-const AnimatedCard: React.FC<Props> = props => {
+const AnimatedCard: React.FC<Props> = ({shoe}) => {
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
 
   const onPress = () => {
+    // select shoe before navigating
+    dispatch(selectShoe(shoe));
+
     // @ts-ignore
     navigation.navigate(ROUTES.DETAILS);
   };
 
   return (
     <Pressable
-      style={[styles.container, {backgroundColor: props.color}]}
+      style={[styles.container, {backgroundColor: shoe.color}]}
       onPress={onPress}>
-      <Text style={styles.brand}>{props.brand}</Text>
-      <Text style={styles.name}>{props.name}</Text>
-      <Text style={styles.price}>{props.price}</Text>
+      <Text style={styles.brand}>{shoe.brand}</Text>
+      <Text style={styles.name}>{shoe.name}</Text>
+      <Text style={styles.price}>{shoe.price}</Text>
       <AntDesign
         name="hearto"
         size={22}
         color="#FFFFFF"
         style={styles.likeButton}
       />
-      <Image source={props.thumbnail} style={styles.cardImage} />
+      <Image source={shoe.thumbnail} style={styles.cardImage} />
       <MaterialIcons
         name="arrow-right-alt"
         size={30}

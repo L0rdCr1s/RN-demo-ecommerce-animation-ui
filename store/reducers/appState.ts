@@ -5,11 +5,13 @@ import {ShoeType, CartItemType} from 'store/utils/types';
 interface StateType {
   shoes: ShoeType[];
   cart: CartItemType[];
+  selectedShoe: ShoeType;
 }
 
 const initialState: StateType = {
   shoes: sampleShoes,
   cart: [],
+  selectedShoe: sampleShoes[0],
 };
 
 export const appStateSlice = createSlice({
@@ -17,13 +19,16 @@ export const appStateSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state: StateType, action: PayloadAction<CartItemType>) => {
-      state.cart.push(action.payload);
+      // add to cart source code
     },
     removeFromCart: (state: StateType, action: PayloadAction<CartItemType>) => {
-      state.cart = state.cart.filter(item => item.id !== action.payload.id);
+      // remove from cart source code
+    },
+    selectShoe: (state: StateType, action: PayloadAction<ShoeType>) => {
+      state.selectedShoe = action.payload;
     },
   },
 });
 
-export const {addToCart, removeFromCart} = appStateSlice.actions;
+export const {addToCart, removeFromCart, selectShoe} = appStateSlice.actions;
 export default appStateSlice.reducer;

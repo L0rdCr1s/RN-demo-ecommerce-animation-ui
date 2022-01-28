@@ -5,21 +5,25 @@ import {
   widthPercentageToDP as wdp,
 } from 'react-native-responsive-screen';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useAppSelector} from 'store/utils/hooks';
 
 const SampleImagesRow: React.FC = () => {
+  const {selectedShoe} = useAppSelector(state => state.appStateData);
+
   return (
     <View style={styles.container}>
+      {selectedShoe.images.map(image => (
+        <Pressable key={`${Math.random()}`}>
+          {/* I used shoe thumbnail here because the sample images aren't cropped
+              Properly and i haven't got time to do that for a demo app, but they are
+              already there, just use the image variable and they will show, and then
+              you can crop them yourself properly
+           */}
+          <Image source={selectedShoe.thumbnail} style={styles.image} />
+        </Pressable>
+      ))}
       <Pressable>
-        <Image source={require('assets/img/1.png')} style={styles.image} />
-      </Pressable>
-      <Pressable>
-        <Image source={require('assets/img/1.png')} style={styles.image} />
-      </Pressable>
-      <Pressable>
-        <Image source={require('assets/img/1.png')} style={styles.image} />
-      </Pressable>
-      <Pressable>
-        <Image source={require('assets/img/1.png')} style={styles.image} />
+        <Image source={selectedShoe.thumbnail} style={styles.image} />
         <View style={styles.lastImageOverlay}>
           <AntDesign name="play" size={30} color="#FFFEFE" />
         </View>

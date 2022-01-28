@@ -4,19 +4,18 @@ import {
   heightPercentageToDP as hdp,
   widthPercentageToDP as wdp,
 } from 'react-native-responsive-screen';
+import {useAppSelector} from 'store/utils/hooks';
 
 const ShoeDescription: React.FC = () => {
+  const {selectedShoe} = useAppSelector(state => state.appStateData);
+
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
-        <Text style={styles.title}>Air-Max-270</Text>
-        <Text style={styles.title}>$150.00</Text>
+        <Text style={styles.title}>{selectedShoe.name}</Text>
+        <Text style={styles.title}>{selectedShoe.price}</Text>
       </View>
-      <Text style={styles.description}>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s,
-      </Text>
+      <Text style={styles.description}>{selectedShoe.description}</Text>
       <Pressable style={styles.subtitleContainer}>
         <Text style={styles.subtitle}>MORE DETAILS</Text>
       </Pressable>

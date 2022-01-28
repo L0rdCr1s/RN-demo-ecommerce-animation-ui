@@ -10,7 +10,7 @@ import {ShoeType} from 'store/utils/types';
 
 const AnimatedScrollList: React.FC = () => {
   const _renderItem = (item: ListRenderItemInfo<ShoeType>) => {
-    return <AnimatedCard {...item.item} />;
+    return <AnimatedCard shoe={item.item} />;
   };
 
   return (

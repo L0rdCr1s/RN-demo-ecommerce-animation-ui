@@ -4,21 +4,20 @@ import {
   heightPercentageToDP as hdp,
   widthPercentageToDP as wdp,
 } from 'react-native-responsive-screen';
+import {useAppSelector} from 'store/utils/hooks';
 
 const AnimatedShoeCircle: React.FC = () => {
+  const {selectedShoe} = useAppSelector(state => state.appStateData);
+
   return (
-    <View style={styles.circle}>
-      <Image
-        source={require('assets/img/1.png')}
-        style={styles.animatedImage}
-      />
+    <View style={[styles.circle, {backgroundColor: selectedShoe.color}]}>
+      <Image source={selectedShoe.thumbnail} style={styles.animatedImage} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   circle: {
-    backgroundColor: '#6b52ae',
     height: hdp(70),
     width: hdp(67),
     borderRadius: 300,
