@@ -28,35 +28,36 @@ const AnimatedCard: React.FC<Props> = ({shoe, index, x}) => {
   const dispatch = useAppDispatch();
 
   // calculate the position of the card
-  const position = RNAnimated.subtract(index * wdp(71), x);
-  const isFirst = 0;
-  const isPreparing = wdp(100) - wdp(41);
-  const isLast = wdp(100) - wdp(31);
-  const isShowing = wdp(100);
-  const isHiding = -wdp(71);
+  const dynamic_position = RNAnimated.subtract(index * wdp(71), x);
+  const pos0 = -wdp(71);
+  const pos1 = 0;
+  const pos2 = wdp(5);
+  const pos3 = wdp(100) - wdp(41);
+  const pos4 = wdp(100) - wdp(31);
+  const pos5 = wdp(100);
 
-  let scale = position.interpolate({
-    inputRange: [isHiding, isFirst, isLast, isShowing],
+  let scale = dynamic_position.interpolate({
+    inputRange: [pos0, pos1, pos4, pos5],
     outputRange: [1, 1.12, 1, 1],
   });
 
-  const shoeRotate = position.interpolate({
-    inputRange: [isHiding, isFirst, isLast, isShowing],
-    outputRange: ['-20deg', '-20deg', '-55deg', '-75deg'],
+  const shoeRotate = dynamic_position.interpolate({
+    inputRange: [pos0, pos1, pos3, pos4, pos5],
+    outputRange: ['-20deg', '-20deg', '-55deg', '-75deg', '-75deg'],
   });
 
-  const shoeTranslateX = position.interpolate({
-    inputRange: [isHiding, isFirst, isLast],
-    outputRange: [wdp(-80), wdp(4), wdp(2)],
+  const shoeTranslateX = dynamic_position.interpolate({
+    inputRange: [pos0, pos1, pos3, pos4],
+    outputRange: [wdp(-80), wdp(8), wdp(15), wdp(2)],
   });
 
-  const cardRotate = position.interpolate({
-    inputRange: [isHiding, isFirst, isPreparing, isLast, isShowing],
-    outputRange: ['0deg', '0deg', '30deg', '0deg', '0deg'],
+  const cardRotate = dynamic_position.interpolate({
+    inputRange: [pos0, pos1, pos2, pos3, pos4, pos5],
+    outputRange: ['0deg', '0deg', '-20deg', '30deg', '0deg', '0deg'],
   });
 
-  const cardTranslateX = position.interpolate({
-    inputRange: [isHiding, isFirst, isPreparing, isLast, isShowing],
+  const cardTranslateX = dynamic_position.interpolate({
+    inputRange: [pos0, pos1, pos3, pos4, pos5],
     outputRange: [0, 0, wdp(-20), wdp(-8), 0],
   });
 
@@ -127,6 +128,7 @@ const styles = StyleSheet.create({
     // transform: [{translateX: wdp(2)}],
     position: 'absolute',
     top: hdp(5),
+    zIndex: 2999,
   },
   brand: {
     color: '#FFFFFF',
