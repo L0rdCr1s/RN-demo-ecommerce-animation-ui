@@ -1,3 +1,5 @@
+import {ShoeType} from 'store/utils/types';
+
 export const ROUTES = {
   DISCOVER: 'DISCOVER',
   DETAILS: 'DETAILS',
@@ -7,5 +9,5 @@ export const ROUTES = {
 export type AppScreensStackParams = {
   DISCOVER: undefined;
   CART: undefined;
-  DETAILS: {shoeId: string};
+  DETAILS: {shoe: ShoeType};
 };

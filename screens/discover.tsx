@@ -15,7 +15,9 @@ const Discover: React.FC = () => {
     <SafeAreaView style={styles.container}>
       <DiscoverHeader />
       <BrandsRow />
+
       <View style={styles.topCardsContainer}>
+        <View style={styles.testDot} />
         <View style={styles.verticalTags}>
           <VerticalTags />
         </View>
@@ -39,6 +41,16 @@ const styles = StyleSheet.create({
     height: hdp(30),
     left: wdp(6),
     position: 'absolute',
+  },
+  testDot: {
+    height: hdp(30),
+    width: wdp(47),
+    borderRadius: 20,
+    backgroundColor: 'red',
+    position: 'absolute',
+    transform: [{scale: 1.1}],
+    left: wdp(24),
+    top: hdp(4.5)
   },
 });
 
