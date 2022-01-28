@@ -1,7 +1,8 @@
 import {nanoid} from 'nanoid/non-secure';
 import {ShoeType} from 'store/utils/types';
 
-const description = `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,`;
+const description =
+  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,";
 
 export const sampleShoes: ShoeType[] = [
   {
