@@ -1,6 +1,11 @@
 import {ROUTES} from 'assets/configs/routes';
 import React from 'react';
-import {Image, Pressable, StyleSheet, Text, Animated, View} from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  Animated as RNAnimated,
+} from 'react-native';
 import {
   heightPercentageToDP as hdp,
   widthPercentageToDP as wdp,
@@ -11,29 +16,26 @@ import {selectShoe} from 'store/reducers/appState';
 import {useAppDispatch} from 'store/utils/hooks';
 import {ShoeType} from 'store/utils/types';
 import {useNavigation} from '@react-navigation/native';
-// import Animated from 'react-native-reanimated';
 
 interface Props {
   shoe: ShoeType;
   index: number;
-  x: Animated.Value;
+  x: RNAnimated.Value;
 }
-
-const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 const AnimatedCard: React.FC<Props> = ({shoe, index, x}) => {
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
 
   // calculate the position of the card
-  const position = Animated.subtract(index * wdp(71), x);
+  const position = RNAnimated.subtract(index * wdp(71), x);
   const isFirst = 0;
   const isPreparing = wdp(100) - wdp(41);
   const isLast = wdp(100) - wdp(31);
   const isShowing = wdp(100);
   const isHiding = -wdp(71);
 
-  const scale = position.interpolate({
+  let scale = position.interpolate({
     inputRange: [isHiding, isFirst, isLast, isShowing],
     outputRange: [1, 1.12, 1, 1],
   });
@@ -67,8 +69,8 @@ const AnimatedCard: React.FC<Props> = ({shoe, index, x}) => {
   };
 
   return (
-    <View>
-      <AnimatedPressable
+    <Pressable onPress={onPress}>
+      <RNAnimated.View
         style={[
           styles.container,
           {
@@ -80,8 +82,7 @@ const AnimatedCard: React.FC<Props> = ({shoe, index, x}) => {
               {translateX: cardTranslateX},
             ],
           },
-        ]}
-        onPress={onPress}>
+        ]}>
         <Text style={styles.brand}>{shoe.brand}</Text>
         <Text style={styles.name}>{shoe.name}</Text>
         <Text style={styles.price}>{shoe.price}</Text>
@@ -97,8 +98,8 @@ const AnimatedCard: React.FC<Props> = ({shoe, index, x}) => {
           color="#FFFFFF"
           style={styles.arrowButton}
         />
-      </AnimatedPressable>
-      <Animated.Image
+      </RNAnimated.View>
+      <RNAnimated.Image
         source={shoe.thumbnail}
         style={[
           styles.cardImage,
@@ -107,7 +108,7 @@ const AnimatedCard: React.FC<Props> = ({shoe, index, x}) => {
           },
         ]}
       />
-    </View>
+    </Pressable>
   );
 };
 

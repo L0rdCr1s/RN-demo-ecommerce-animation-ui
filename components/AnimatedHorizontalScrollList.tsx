@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     paddingLeft: wdp(24),
     height: hdp(39),
     alignItems: 'center',
+    overflow: 'visible',
   },
 });
 
