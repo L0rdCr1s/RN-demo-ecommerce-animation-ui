@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingTop: hdp(8),
+    paddingTop: hdp(2),
     paddingHorizontal: wdp(6),
   },
   hitSlop: {

@@ -1,32 +1,49 @@
 import React from 'react';
-import {FlatList, ListRenderItemInfo, StyleSheet} from 'react-native';
+import {FlatList, ListRenderItemInfo, StyleSheet, Animated} from 'react-native';
 import {
   heightPercentageToDP as hdp,
   widthPercentageToDP as wdp,
 } from 'react-native-responsive-screen';
 import AnimatedCard from 'components/AnimatedCard';
 import {sampleShoes} from 'store/utils/fake-data';
-import {ShoeType} from 'store/utils/types';
+
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 const AnimatedScrollList: React.FC = () => {
-  const _renderItem = (item: ListRenderItemInfo<ShoeType>) => {
-    return <AnimatedCard shoe={item.item} />;
+  const x = new Animated.Value(0);
+  const onScroll = Animated.event([{nativeEvent: {contentOffset: {x}}}], {
+    useNativeDriver: true,
+  });
+
+  const _renderItem = (item: ListRenderItemInfo<any>) => {
+    return <AnimatedCard shoe={item.item} index={item.index} x={x} />;
   };
 
   return (
-    <FlatList
+    <AnimatedFlatList
       data={sampleShoes}
       renderItem={_renderItem}
       horizontal={true}
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={styles.contentContainer}
+      // handle animation on scroll
+      onScroll={onScroll}
+      scrollEventThrottle={16}
+      // snap elements to ensure that always the view
+      // remains the same ven after scroll
+      snapToStart={true}
+      snapToInterval={wdp(73)}
+      decelerationRate="fast"
+      snapToEnd={true}
     />
   );
 };
 
 const styles = StyleSheet.create({
   contentContainer: {
-    paddingLeft: wdp(20),
+    paddingLeft: wdp(24),
+    height: hdp(39),
+    alignItems: 'center',
   },
 });
 

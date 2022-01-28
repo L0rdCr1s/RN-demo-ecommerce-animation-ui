@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
   },
   topCardsContainer: {
     flexDirection: 'row',
-    paddingTop: hdp(3),
   },
   verticalTags: {
     width: hdp(6),
