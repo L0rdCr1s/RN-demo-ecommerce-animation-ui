@@ -12,8 +12,9 @@ const Main: React.FC = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        presentation: 'modal',
+        presentation: 'card',
         gestureEnabled: true,
+        cardOverlayEnabled: true,
       }}>
       <Stack.Screen name="DISCOVER" component={Discover} />
       <Stack.Screen name="DETAILS" component={Details} />

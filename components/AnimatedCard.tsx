@@ -1,5 +1,6 @@
+import {ROUTES} from 'assets/configs/routes';
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text} from 'react-native';
 import {
   heightPercentageToDP as hdp,
   widthPercentageToDP as wdp,
@@ -7,12 +8,22 @@ import {
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {ShoeType} from 'store/utils/types';
+import {useNavigation} from '@react-navigation/native';
 
 interface Props extends ShoeType {}
 
 const AnimatedCard: React.FC<Props> = props => {
+  const navigation = useNavigation();
+
+  const onPress = () => {
+    // @ts-ignore
+    navigation.navigate(ROUTES.DETAILS);
+  };
+
   return (
-    <View style={[styles.container, {backgroundColor: props.color}]}>
+    <Pressable
+      style={[styles.container, {backgroundColor: props.color}]}
+      onPress={onPress}>
       <Text style={styles.brand}>{props.brand}</Text>
       <Text style={styles.name}>{props.name}</Text>
       <Text style={styles.price}>{props.price}</Text>
@@ -29,7 +40,7 @@ const AnimatedCard: React.FC<Props> = props => {
         color="#FFFFFF"
         style={styles.arrowButton}
       />
-    </View>
+    </Pressable>
   );
 };
 
